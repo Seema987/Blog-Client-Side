@@ -11,7 +11,7 @@ const Signup = () => {
                 <input type="password" placeholder='password' />
                 <button>Sign Up</button>
                 
-                <span>Do you have an account? <Link to="/login">Login</Link></span>
+                <span>Have an account? <Link to="/login">Login</Link></span>
             </form>
         </div>
     )
