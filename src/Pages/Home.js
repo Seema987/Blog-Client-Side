@@ -1,7 +1,42 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { Link } from 'react-router-dom'
 
+
+
 const Home = () => {
+    // const [title,  setTitle] = useState('')
+    // const [desc, setDesc] = useState('')
+    // const [img, setImg] = useState('')
+
+    // const handleTitleChange = (e) => {
+    //     setTitle(e.target.value)
+    // }
+
+    // const handleDescChange = (e) => {
+    //     setDesc(e.target.value)
+    // }
+
+    // const handleImgChange = (e) => {
+    //     setImg(e.target.value)
+    // }
+
+
+    // const handCreatePost = async () => {
+    //     fetch('/api/posts', {
+    //         method: 'POST',
+    //         headers: { 'Content-Type': 'application/json' },
+    //         body: JSON.stringify({
+    //             title,
+    //             desc,
+    //             img
+    //         })
+    //     })
+    //         .then(res => res.json())
+    //         .then(res => {
+                
+    //         })
+    // }
+
     const posts= [
         {
             id: 1,
@@ -52,3 +87,8 @@ const Home = () => {
 }
 
 export default Home
+
+
+                
+        
+       

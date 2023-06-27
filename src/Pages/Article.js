@@ -4,42 +4,93 @@ import 'react-quill/dist/quill.snow.css'
 
 const Article = () => {
     const [value, setValue] =  useState('')
+    const [title,  setTitle] = useState('')
+    const [desc, setDesc] = useState('')
+    const [img, setImg] = useState('')
+    const [cat, setCat] = useState('')
+    const [date, setDate] = useState("")
+    const [imgLink, setImgLink] = useState('')
+    
+
+
+    const handleTitleChange = (e) => {
+            setTitle(e.target.value)
+        }
+
+    const handleImgLink = (e) => {
+        setImgLink(e.target.value)
+    }
+    
+        // const handleDescChange = (e) => {
+        //     setDesc(e.target.value)
+        // }
+    
+        const handleImgChange = (e) => {
+            setImg(e.target.files[0])
+        }
+
+        const handleCatChange = (e) => {
+            setCat(e.target.value)
+        }
+        
+        const handleCreatePost = async () => {
+                fetch('http://localhost:3000/api/blogs', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({
+                        title,
+                        desc,
+                        img
+                    })
+                })
+                .then((res) => res.json())
+                .then((data) => console.log(data))
+                .catch((error) => console.error("Error:", error))
+            }
+            
+
     return (
         <div className='add'>
             <div className="content">
-                <input type="text" placeholder='Title' />
+                <input type="text" placeholder='Title' onChange={handleTitleChange}/>
                 <div className="editorContainer">
-                    <ReactQuill className="editor" theme='snow' value={value} onChange={setValue} />
+                    <ReactQuill className="editor" theme='snow' value={desc} onChange={setDesc} />
                 </div>
             </div>
             <div className="menu">
                 <div className="item">
                     
-                    <input style={{display:"none"}}type="file" id="file" name="" />
+                    <input style={{display:"none"}}type="file" id="file" name="" onChange={handleImgChange}/>
                     <label className='file' htmlFor="file">Upload Image</label>
+                    <label>Upload Image Link:
+                        <input type="text" value={imgLink} onChange={handleImgLink} />
+                        </label>
+                    <label>Date:
+                        <input type="text" value={date} onChange={(e) => setDate(e.target.value)} />
+                        </label>
                     <h1>Publish</h1>
                     <div className="buttons">
                         {/* <button>Save as draft</button> */}
-                        <button>Update</button>
+                        <button onClick={handleCreatePost}>Publish</button>
                     </div>
                 </div>
                 <div className="item">
                     <h1>Category</h1>
-                    <input type="radio" name="new" value="prodcut" id="product" />
+                    <input type="radio" name="cat" value="prodcut" id="product" onChange={handleCatChange}/>
                     <label htmlFor="product">Product</label>
-                    <input type="radio" name="new" value="cinematic" id="cinematic" />
+                    <input type="radio" name="cat" value="cinematic" id="cinematic" onChange={handleCatChange}/>
                     <label htmlFor="cinematic">Cinematic</label>
-                    <input type="radio" name="new" value="vintage" id="vintage" />
+                    <input type="radio" name="cat" value="vintage" id="vintage" onChange={handleCatChange}/>
                     <label htmlFor="vintage">Vintage</label>
-                    <input type="radio" name="new" value="abstract" id="abstract" />
+                    <input type="radio" name="cat" value="abstract" id="abstract" onChange={handleCatChange}/>
                     <label htmlFor="abstract">Abstract</label>
-                    <input type="radio" name="new" value="design" id="design" />
+                    <input type="radio" name="cat" value="design" id="design" onChange={handleCatChange}/>
                     <label htmlFor="design">Design</label>
-                    <input type="radio" name="new" value="travel" id="travel" />
+                    <input type="radio" name="cat" value="travel" id="travel" onChange={handleCatChange}/>
                     <label htmlFor="travel">Travel</label>
-                    <input type="radio" name="new" value="potrait" id="potrait" />
+                    <input type="radio" name="cat" value="potrait" id="potrait" onChange={handleCatChange}/>
                     <label htmlFor="potrait">Potrait</label>
-                    <input type="radio" name="new" value="nature" id="nature" />
+                    <input type="radio" name="cat" value="nature" id="nature" onChange={handleCatChange}/>
                     <label htmlFor="nature">Nature</label>
                 </div>
 

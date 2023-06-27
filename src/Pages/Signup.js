@@ -1,6 +1,7 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
 import { useState, useEffect } from 'react'
+import { useNavigate } from "react-router-dom";
 
 
 
@@ -21,8 +22,10 @@ const Signup = () => {
         setPassword(e.target.value)
     }
 
-    const handleSignup = async () => {
+    const navigate = useNavigate()
 
+    const handleSignup = async () => {
+       
         fetch('/api/users', {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
@@ -33,7 +36,15 @@ const Signup = () => {
             })
         })
             .then(res => res.json())
-            .then(email => { })
+            .then(res => { 
+                if(res.error) {
+                    navigate('/signup')
+                   
+                 } else {
+                     
+                     navigate('/login')
+                 }
+            })
     }
 
     return (

@@ -1,8 +1,29 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { Link } from 'react-router-dom'
 import Menu from '../components/Menu'
 
+
 const Mypage = () => {
+
+    const[comment, setComment] = useState('')
+
+    const handleCommentChange = (e) => {
+        setComment(e.target.value)
+    }
+
+    const handleAddComment = async () => {
+        fetch('http://localhost:3000/api/blogs/:id', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({
+                comment
+            })
+        })
+        .then((res) => res.json())
+        .then((data) => console.log(data))
+        .catch((error) => console.error("Error:", error))
+    }
+
     return (
         <div className='single'>
             <div className="content">
@@ -19,6 +40,9 @@ const Mypage = () => {
                 <button>Edit</button>
                 </Link>
                 <button>Delete</button>
+                <label for="" onChange={handleCommentChange}>Comment:</label>
+                <textarea name="user_comment" id="add_comment" rows="3" cols="5"></textarea>
+                <button onClick={handleAddComment}>Submit</button>
             </div>
             </div>
             <h1>hgdyf adsygfaysd ygdsf yugduf </h1>
