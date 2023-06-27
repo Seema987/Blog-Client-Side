@@ -1,56 +1,82 @@
-import React, { useState } from 'react'
-import { Link } from 'react-router-dom'
+import React, { useState, useEffect } from 'react'
+import { Link, useParams } from 'react-router-dom'
 import Menu from '../components/Menu'
 
 
 const Mypage = () => {
 
-    const[comment, setComment] = useState('')
+    const [comments, setComments] = useState([])
+    const { id } = useParams()
+    const [post, setPost] = useState({})
+    const [userComment, setUserComment] = useState('')
+
+    useEffect(() => {
+        fetch(`/api/blogs/${id}`, {
+            method: 'GET',
+            headers: { 'Content-Type': 'application/json' },
+        })
+            .then(res => res.json())
+            .then(res => {
+                setPost(res.post);
+            })
+        fetch(`/api/blogs/${id}/comments`).then(res => res.json()).then(res => setComments(res.comments));
+    }, [id])
 
     const handleCommentChange = (e) => {
-        setComment(e.target.value)
+        setUserComment(e.target.value)
     }
 
+
     const handleAddComment = async () => {
-        fetch('http://localhost:3000/api/blogs/:id', {
+        const postComment = {
+            user_comment: userComment,
+            post_id: id,
+            user_id: 1
+        }
+        fetch(`http://localhost:3000/api/blogs/${id}/comments`, {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify({
-                comment
-            })
+            body: JSON.stringify(postComment)
         })
-        .then((res) => res.json())
-        .then((data) => console.log(data))
-        .catch((error) => console.error("Error:", error))
+            .then((res) => res.json())
+            .then((data) => setComments([...comments, data.comments]))
+            .catch((error) => console.error("Error:", error))
     }
 
     return (
         <div className='single'>
+            <h1>{post.title} </h1>
             <div className="content">
-            <img src="https://images.unsplash.com/photo-1617972882867-3707f274c115?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MjF8fGFlc3RoZXRpY3xlbnwwfHwwfHx8MA%3D%3D&auto=format&fit=crop&w=800&q=60" alt="" />
-            <div className="user">
-            <img src="https://images.unsplash.com/photo-1617972882867-3707f274c115?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MjF8fGFlc3RoZXRpY3xlbnwwfHwwfHx8MA%3D%3D&auto=format&fit=crop&w=800&q=60" alt="" />
-            
-            <div className="info">
-                <span>Seema</span>
-                <p>Posted 2 days ago</p>
-            </div>
-            <div className="edit">
-                <Link to={'/article?edit=2'}>
-                <button>Edit</button>
-                </Link>
-                <button>Delete</button>
-                <label for="" onChange={handleCommentChange}>Comment:</label>
-                <textarea name="user_comment" id="add_comment" rows="3" cols="5"></textarea>
-                <button onClick={handleAddComment}>Submit</button>
-            </div>
-            </div>
-            <h1>hgdyf adsygfaysd ygdsf yugduf </h1>
-            <p>hbsdafbcsd  hdgcfsdf yudgsb gsdacv hygbdsc vuysd vyygfvs ygaf dygschv ydgc iudbjsc ygbdshfc uidsjc hbsdafbcsd  hdgcfsdf yudgsb gsdacv hygbdsc vuysd vyygfvs ygaf dygschv ydgc iudbjsc ygbdshfc uidsjc hbsdafbcsd  hdgcfsdf yudgsb gsdacv hygbdsc vuysd vyygfvs ygaf dygschv ydgc iudbjsc ygbdshfc uidsjc hbsdafbcsd  hdgcfsdf yudgsb gsdacv hygbdsc vuysd vyygfvs ygaf dygschv ydgc iudbjsc ygbdshfc uidsjc hbsdafbcsd  hdgcfsdf yudgsb gsdacv hygbdsc vuysd vyygfvs ygaf dygschv ydgc iudbjsc ygbdshfc uidsjc hbsdafbcsd  hdgcfsdf yudgsb gsdacv hygbdsc vuysd vyygfvs ygaf dygschv ydgc iudbjsc ygbdshfc uidsjc hbsdafbcsd  hdgcfsdf yudgsb gsdacv hygbdsc vuysd vyygfvs ygaf dygschv ydgc iudbjsc ygbdshfc uidsjc</p>
+                <img src={post.img} alt="" />
+                <div className="user">
+                    <img src={post.img} alt="" />
+
+
+                    <div className="info">
+                        <span>Seema</span>
+                        <p>Posted 2 days ago</p>
+                    </div>
+                    <div className="edit">
+                        <Link to={`/article?edit=${id}`}>
+                            <button>Edit</button>
+                        </Link>
+                        <button>Delete</button>
+                        <label for="" >Comment:</label>
+                        <textarea onChange={handleCommentChange} name="user_comment" id="add_comment" rows="3" cols="5"></textarea>
+                        <button onClick={handleAddComment} >Submit</button>
+                    </div>
+
+                </div>
+                <ul>
+                        {comments && comments.map(comment => {
+                           return <li>{comment.user_comment}</li>
+                        })}
+                    </ul>                
+
             </div>
             <Menu />
         </div>
-        
+
     )
 }
 
