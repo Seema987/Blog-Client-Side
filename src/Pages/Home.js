@@ -17,6 +17,18 @@ const Home = () => {
                 setPosts(res.posts);
             })
     }, [])
+    
+
+
+        const deletePost =  (id) => {
+            fetch(`/api/blogs/${id}/delete`, { method: 'DELETE' });
+            console.log('Delete successful');
+            const filteredPost  = posts.filter(post => post.id != id)
+            setPosts(filteredPost)
+        }
+       
+   
+
 
     return (
         <div className='home'>
@@ -27,12 +39,13 @@ const Home = () => {
                             <img src={post.img} alt="image" />
                         </div>
                         <div className="content">
-                            <Link className="link" to={`/post/${post.id}`}>
+                            <Link className="link" to={`/test/post/${post.id}`}>
                             </Link>
                             <h1>{post.title}</h1>
                             <p>{post.description && parse(post.description)}</p>
                             <p>Posted on: {post.date}</p>
-                            <Link to={`/post/${post.id}`}>Read More</Link>
+                            <button onClick={() => deletePost(post.id)}>Delete</button>
+                            <Link to={`/test/post/${post.id}`}>Read More</Link>
                         </div>
                     </div>
                 ))}

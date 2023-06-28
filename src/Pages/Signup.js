@@ -45,11 +45,11 @@ const Signup = () => {
             .then(res => res.json())
             .then(res => { 
                 if(res.error) {
-                    navigate('/signup')
+                    navigate('test/signup')
                    
                  } else {
                      
-                     navigate('/login')
+                     navigate('/')
                  }
             })
     }
@@ -71,7 +71,7 @@ const Signup = () => {
                 <button type="button" onClick={() => handleSignup()}>Sign Up</button>
                 
             </form>
-            <span>Have an account? <Link to="/login">Login</Link></span>
+            <span>Have an account? <Link to="/">Login</Link></span>
         </div>
     )
 }

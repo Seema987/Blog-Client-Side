@@ -33,7 +33,7 @@ const Mypage = () => {
             post_id: id,
             user_id: 1
         }
-        fetch(`http://localhost:3000/api/blogs/${id}/comments`, {
+        fetch(`/api/blogs/${id}/comments`, {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify(postComment)
@@ -57,7 +57,7 @@ const Mypage = () => {
                         <p>Posted 2 days ago</p>
                     </div>
                     <div className="edit">
-                        <Link to={`/article?edit=${id}`}>
+                        <Link to={`/test/article?edit=${id}`}>
                             <button>Edit</button>
                         </Link>
                         <button>Delete</button>

@@ -23,7 +23,7 @@ const navigate = useNavigate()
 
     const handleLogin = async () => {
         
-        fetch('http://localhost:3001/api/sessions', {
+        fetch('/api/sessions', {
             method: 'POST',
             headers: { 'Content-Type' : 'application/json' },
             body: JSON.stringify({
@@ -35,11 +35,11 @@ const navigate = useNavigate()
         .then(res =>  {
             //console.log('logged in successfully')
             if(res.error) {
-               navigate('/login')
+               navigate('/')
               
             } else {
                 
-                navigate('/')
+                navigate('/test/home')
             }
         })
     }
@@ -59,7 +59,7 @@ const navigate = useNavigate()
                 <button type="button" onClick={() => handleLogin()}> Login</button>
                 
              
-                <span>Don't have an account? <Link to="/signup">Signup</Link></span>
+                <span>Don't have an account? <Link to="/test/signup">Signup</Link></span>
             </form>
         </div>
     )

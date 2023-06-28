@@ -23,34 +23,30 @@ const Layout = () => {
 
 const router = createBrowserRouter([
   {
-    path:'/',
+    path:'/test',
     element: <Layout/>,
     children:[
       {
-        path:'/',
-        element: <Home />
-      },
-      {
-        path:'/post/:id',
+        path:'/test/post/:id',
         element: <Mypage/>,
       },
       {
-        path:'/article',
+        path:'/test/article',
         element: <Article/>,
       },
       {
-        path:'/home',
+        path:'/test/home',
         element: <Home/>,
       }
     ]
   },
   
   {
-    path:'/signup',
+    path:'test/signup',
     element: <Signup />,
   },
   {
-    path:'/login',
+    path:'/',
     element: <Login />,
   },
 ])

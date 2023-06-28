@@ -43,7 +43,8 @@ const Article = () => {
             img: imgLink,
             date: date
         }
-        fetch('http://localhost:3000/api/blogs', {
+        console.log(postData)
+        fetch('/api/blogs', {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify(postData)
