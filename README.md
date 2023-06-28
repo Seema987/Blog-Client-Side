@@ -21,7 +21,7 @@ Tools used
 ## Features
 ### Adding Posts
 
-Our website allows you to add posts about your travel experiences, along with the photographs you captured during your journey. To add a post:
+My website allows you to add posts about your travel experiences, along with the photographs you captured during your journey. To add a post:
 
 1. Login to your account or sign up if you don't have one.
 2. Click on the "Create" button on the navigation bar.
@@ -43,13 +43,13 @@ You are able to view blog posts and leave comments on them. This interactive fea
  
 ## User Authentication
 
-To enhance security and personalize user experiences, our website provides a user authentication system. Here's how it works:
+To enhance security and personalize user experiences, my website provides a user authentication system. Here's how it works:
 
 **Signup**: To create an account, click on the "Sign Up" button on the navigation bar and provide the required details. Once signed up, you can log in.
 **Login**: Enter your credentials (email and password) and click on the "Login" button to access your account and the features the website offers.
 
 
-We hope you enjoy using our Travel and Photography website. Please feel free to report any issues you encounter or suggest improvements. We are constantly working to provide you with the best experience possible!
+I hope you enjoy using our Travel and Photography website. Please feel free to report any issues you encounter or suggest improvements.
 
 
 ## Future features
@@ -65,8 +65,8 @@ We hope you enjoy using our Travel and Photography website. Please feel free to 
 3.  I had a problem where my login page would not show first when the app loaded. Making minor changes on the routes fixed this problem. 
 
 ## Wireframes
- ![authentication](auth.png)
- ![main-page](main.png)
+ ![](./src/images/auth.png)
+ ![](./src/images/main.png)
 
 
 #### Happy traveling and happy clicking!
