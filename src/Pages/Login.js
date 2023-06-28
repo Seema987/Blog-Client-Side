@@ -36,18 +36,18 @@ const navigate = useNavigate()
             //console.log('logged in successfully')
             if(res.error) {
                navigate('/')
-              
+               handleError(res.error)
             } else {
                 
-                navigate('/test/home')
+                navigate('/blog/home')
             }
         })
     }
     
-    function handleError(errorMessage) {
-        document.querySelector('#page').innerHTML =  `
+    const handleError = (errorMessage) => {
+        document.querySelector('p').innerHTML =  `
         <p style='color: red;'>${errorMessage}</p>
-        ` + document.querySelector('#page').innerHTML
+        ` + document.querySelector('p').innerHTML
     }
     return (
         <div className='login'>
@@ -57,9 +57,9 @@ const navigate = useNavigate()
                 <input type="password" placeholder='password' onChange={handlePasswordChange}/>
                 
                 <button type="button" onClick={() => handleLogin()}> Login</button>
-                
-             
-                <span>Don't have an account? <Link to="/test/signup">Signup</Link></span>
+                  
+                <p>{handleError}</p>
+                <span>Don't have an account? <Link to="/blog/signup">Signup</Link></span>
             </form>
         </div>
     )

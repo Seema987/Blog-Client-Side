@@ -1,6 +1,7 @@
 import React, { useState } from 'react'
 import ReactQuill, { displayName } from 'react-quill'
 import 'react-quill/dist/quill.snow.css'
+import { Link } from 'react-router-dom'
 
 const Article = () => {
     const [value, setValue] = useState('')
@@ -43,7 +44,7 @@ const Article = () => {
             img: imgLink,
             date: date
         }
-        console.log(postData)
+        //console.log(postData)
         fetch('/api/blogs', {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
@@ -67,7 +68,7 @@ const Article = () => {
                 <div className="item">
 
                     <input style={{ display: "none" }} type="file" id="file" name="" onChange={handleImgChange} />
-                    <label className='file' htmlFor="file">Upload Image</label>
+                   {/* <label className='file' htmlFor="file">Upload Image</label>*/}
                     <label>Upload Image Link:
                         <input type="text" value={imgLink} onChange={handleImgLink} />
                     </label>
@@ -77,7 +78,7 @@ const Article = () => {
                     <h1>Publish</h1>
                     <div className="buttons">
                         {/* <button>Save as draft</button> */}
-                        <button onClick={handleCreatePost}>Publish</button>
+                        <Link to='/blog/home'><button onClick={handleCreatePost}>Publish</button></Link>
                     </div>
                 </div>
                 <div className="item">

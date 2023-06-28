@@ -39,13 +39,13 @@ const Home = () => {
                             <img src={post.img} alt="image" />
                         </div>
                         <div className="content">
-                            <Link className="link" to={`/test/post/${post.id}`}>
+                            <Link className="link" to={`/blog/post/${post.id}`}>
                             </Link>
                             <h1>{post.title}</h1>
                             <p>{post.description && parse(post.description)}</p>
-                            <p>Posted on: {post.date}</p>
+                            <p className='date'>Posted on: {post.date}</p>
                             <button onClick={() => deletePost(post.id)}>Delete</button>
-                            <Link to={`/test/post/${post.id}`}>Read More</Link>
+                            <Link to={`/blog/post/${post.id}`}>Read More</Link>
                         </div>
                     </div>
                 ))}

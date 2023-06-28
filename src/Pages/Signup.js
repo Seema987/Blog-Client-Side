@@ -45,14 +45,20 @@ const Signup = () => {
             .then(res => res.json())
             .then(res => { 
                 if(res.error) {
-                    navigate('test/signup')
-                   
+                    navigate('blog/signup')
+                    handleError(res.error)
                  } else {
-                     
                      navigate('/')
                  }
             })
     }
+
+    const handleError = (errorMessage) => {
+        document.querySelector('p').innerHTML =  `
+        <p style='color: red;'>${errorMessage}</p>
+        ` + document.querySelector('p').innerHTML
+    }
+    
 
     return (
         <div className='signup'>
@@ -69,9 +75,10 @@ const Signup = () => {
                     <option value="Blue">Blue</option>
                 </select>
                 <button type="button" onClick={() => handleSignup()}>Sign Up</button>
-                
+                <p>{handleError}</p>
+                <span>Have an account? <Link to="/">Login</Link></span>
             </form>
-            <span>Have an account? <Link to="/">Login</Link></span>
+            
         </div>
     )
 }

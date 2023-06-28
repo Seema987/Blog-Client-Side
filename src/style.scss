@@ -175,9 +175,16 @@ footer{
                 font-size: 48px;
             }
 
+            .date{
+                font-style: italic;
+                font-weight: lighter;
+                font-size: smaller;
+            }
+            
             p{
                 font-size: 18px;
             }
+            
 
             button{
                 width: max-content;
@@ -193,13 +200,14 @@ footer{
                     background-color: $defaultColor;
                     color:black;
                 }
+
             }
         }
     }
     }
 }
 
-//SINGLE
+//MYPAGE
 
 .single{
     display: flex;
@@ -252,6 +260,35 @@ footer{
             text-align: justify;
             line-height: 30px;
         }
+
+
+        .submit{
+            width: max-content;
+            padding: 10px 20px;
+            border: none;
+            cursor: pointer;
+            background-color: white;
+            border: 1px solid rgb(186, 163, 129);
+            color: rgb(186, 163, 129);
+            text-align: center;
+            margin-left: 300px;
+            margin-top: 0;
+
+        }
+
+    
+            .commentContainer{
+                background-color: white;
+                border: 1px solid rgb(186, 163, 129);
+                color: rgb(186, 163, 129);
+            }
+    
+            textarea{
+                width: 300px;
+                height: 150px;
+            }
+        
+        
     }
     .menu{
         flex:2;
@@ -298,7 +335,7 @@ footer{
     }
 }
 
-//WRITE
+//ARTICLE
 
 .write{
     margin-top: 20px;
@@ -375,3 +412,4 @@ footer{
     }
 }
 }
+

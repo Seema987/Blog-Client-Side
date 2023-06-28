@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react'
 import { Link, useParams } from 'react-router-dom'
 import Menu from '../components/Menu'
+import parse from 'html-react-parser';
 
 
 const Mypage = () => {
@@ -42,37 +43,46 @@ const Mypage = () => {
             .then((data) => setComments([...comments, data.comments]))
             .catch((error) => console.error("Error:", error))
     }
+   
 
     return (
         <div className='single'>
-            <h1>{post.title} </h1>
+            
             <div className="content">
+            <h1>{post.title} </h1>
                 <img src={post.img} alt="" />
+                
                 <div className="user">
                     <img src={post.img} alt="" />
 
-
                     <div className="info">
                         <span>Seema</span>
-                        <p>Posted 2 days ago</p>
+                        <p>Posted on {post.date}</p>
+                        
                     </div>
+                    
+                    
                     <div className="edit">
-                        <Link to={`/test/article?edit=${id}`}>
+                        <Link to={`/blog/article?edit=${id}`}>
                             <button>Edit</button>
                         </Link>
                         <button>Delete</button>
-                        <label for="" >Comment:</label>
-                        <textarea onChange={handleCommentChange} name="user_comment" id="add_comment" rows="3" cols="5"></textarea>
-                        <button onClick={handleAddComment} >Submit</button>
                     </div>
-
+                    
                 </div>
-                <ul>
+                <p>{post.description && parse(post.description)}</p>
+                <label for="" >Comment:</label>
+           
+                <textarea onChange={handleCommentChange} name="user_comment" id="add_comment" rows="3" cols="5"></textarea>
+                <button className='submit' onClick={handleAddComment} >Submit</button>             
+
+                <ul className='commentContainer'>
                         {comments && comments.map(comment => {
                            return <li>{comment.user_comment}</li>
                         })}
-                    </ul>                
-
+                    </ul>   
+          
+                   
             </div>
             <Menu />
         </div>
