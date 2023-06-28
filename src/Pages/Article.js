@@ -21,11 +21,6 @@ const Article = () => {
         setImgLink(e.target.value)
     }
 
-    // const handleDescChange = (e) => {
-    //     //setDesc(e.target.value)
-    //     console.log(e.target)
-    // }
-
     const handleImgChange = (e) => {
         setImg(e.target.files[0])
     }
@@ -37,6 +32,7 @@ const Article = () => {
         setCat(e.target.value)
     }
 
+        //.............................********..........................................
     const handleCreatePost = async () => {
         const postData = {
             title: title,
@@ -55,6 +51,9 @@ const Article = () => {
             .catch((error) => console.error("Error:", error))
     }
 
+        //.............................********..........................................
+
+    
 
     return (
         <div className='add'>

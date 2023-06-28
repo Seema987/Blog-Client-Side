@@ -2,25 +2,25 @@ import React from 'react'
 import { Link } from 'react-router-dom'
 import { useNavigate } from "react-router-dom";
 
-const Navbar = () => {
+const Navbar = (props) => {
 
     const navigate = useNavigate()
-    const logOut = () =>{
-    
+    const logOut = () => {
+
         fetch(`/api/sessions`, {
             method: 'DELETE'
         })
-        .then(() => {
-            navigate('/')
-               
+            .then(() => {
+                navigate('/')
+
             })
     }
     return (
         <div className='navbar'>
             <div className="container">
-                <div className="logo">Logo</div>
+                <img className="logo" src="https://i.pinimg.com/750x/c5/81/41/c58141e5805eeb812e15e500decb817f.jpg" />
                 <div className="links">
-                <Link className='link' to='/blog/home'>
+                    <Link className='link' to='/blog/home'>
                         <h6>HOME</h6>
                     </Link>
                     <Link className='link' to='/blog/?  cat=product'>
@@ -47,10 +47,10 @@ const Navbar = () => {
                     <Link className='link' to='/blog/?  cat=nature'>
                         <h6>NATURE</h6>
                     </Link>
-                    <span>Seema</span>
-             
+                    <span>{props.user.name}</span>
                     <span onClick={logOut}>Logout</span>
-                   
+
+
                     <span className='write'>
                         <Link className='link' to="/blog/article">Create</Link>
                     </span>

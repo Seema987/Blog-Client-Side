@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react'
 import { Link, useParams } from 'react-router-dom'
 import Menu from '../components/Menu'
 import parse from 'html-react-parser';
+import { useNavigate } from "react-router-dom";
 
 
 const Mypage = () => {
@@ -43,6 +44,16 @@ const Mypage = () => {
             .then((data) => setComments([...comments, data.comments]))
             .catch((error) => console.error("Error:", error))
     }
+
+    const navigate = useNavigate()
+
+    const deletePost = () => {
+        fetch(`/api/blogs/${id}/delete`, { method: 'DELETE' });
+        console.log('Delete successful');
+        
+        navigate('/blog/home')
+       
+    }
    
 
     return (
@@ -63,10 +74,10 @@ const Mypage = () => {
                     
                     
                     <div className="edit">
-                        <Link to={`/blog/article?edit=${id}`}>
+                        <Link to={`/blog/editarticle/${id}`}>
                             <button>Edit</button>
                         </Link>
-                        <button>Delete</button>
+                        <button onClick={deletePost}>Delete</button>
                     </div>
                     
                 </div>

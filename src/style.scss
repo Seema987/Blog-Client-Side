@@ -76,7 +76,11 @@ $defaultColor:  rgb(214, 207, 196);
         align-items: center;
         justify-content: space-between;
 
-        .logo{}
+        .logo{
+            width:90px;
+            height: 90px;
+            border-radius: 70%;
+        }
         .links{
             display:flex;
             align-items: center;
